@@ -1,0 +1,31 @@
+<nav class="navbar navbar-expand-md navbar-base">
+  <div class="container">               
+   <p class="navbar-bran my-auto purpletext">Mave</p>
+      <span class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+          <i class="bi bi-list"></i>
+       </span>
+         <div class="collapse navbar-collapse"id="navmenu">
+          <ul class="navbar-nav mr-auto"></ul>
+          <ul class="navbar-nav mr-auto">
+          </ul>  
+          <ul class="navbar-nav ms-auto" id="block">
+            <li><a href="/" class="nav-link mr-5 pe-4">Home</a></li>
+            {% if user.is_authenticated %}        
+            <div class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><i class="fas fa-user"></i></a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'profile' user.username %}">Profile</a></li>
+                <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
+              </ul>
+            </div>
+          {% else %}
+          <ul class="navbar-nav ms-auto">
+              <li><a href="{% url 'account_login' %}" class="btn btn-light mr-2 lead">Log In</a></li> 
+          </ul>
+          {% endif %}
+
+          </ul>
+     </div>                
+  </div>
+
+</nav>

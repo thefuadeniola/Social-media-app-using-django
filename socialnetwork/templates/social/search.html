@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% block content %}
+    <section class="p-5">
+      <form class="d-flex m-auto"method="POST"action="/search/">{% csrf_token %}
+        <input class="form-control me-2" type="search"placeholder="Search"name="searched"value='{{searched}}'>
+        <button class="btn btn-search" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>   
+      {% if searched %}
+
+      <div class="row p-5 normal-body m-auto">
+        {% for profile in items %}              
+        <div class="row justify-content-center mt-3">
+        <div class="col-md-5 col-sm-12 border-bottom position-relative">
+          <div class="position-relative">
+            <p>{{profile.name}}<a style="text-decoration: none;" class="text-primary" href="/{{profile.user.username}}/">@{{ profile.user.username }}</a><img src="{{profile.picture.url}}" class="rounded-circle p-2" width="60px" height="60px" style="float:right"></p>
+            {% if profile.location %}
+            <p>{{ profile.location }}</p>
+            {% endif %}
+            <p>Followers: {{ profile.followers.all.count }}</p>
+        </div>
+</div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock content %}

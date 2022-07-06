@@ -1,0 +1,184 @@
+:root{--1s: 1s;}
+@media screen and(prefers-reduced-motion:reduce){:root{--1s:0s;}}
+div{transition: all calc(var(--1s)*0.5);}
+.btnpost{
+    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 31%, rgba(218,96,96,1) 70%);}
+h1, h2, h3, h4, h5, h6{font-family: 'Inter', sans-serif;}
+.lead{font-family: 'Sora', sans-serif;}
+.btn-register{background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 31%, rgba(218,96,96,1) 70%);}
+nav{background-color: white;position: fixed;top:0px;}
+.mave{transform: rotate(-90deg);}
+.bigbtn{height: 65px;width:350px;background-color: rgba(131,58,180,1);color:white;border:1px solid rgba(131,58,180,1);border-radius: 25px;box-shadow: 0px 0px 4px 0px rgb(58, 57, 57);}
+.zoom{transition: transform .2s;}
+.zoom:hover{-ms-transform: scale(1.1); 
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);    background: rgb(131,58,180);
+    background: linear-gradient(90deg, rgba(131,58,180,1) 31%, rgba(218,96,96,1) 70%);
+
+  }
+.footer-basic {
+  padding:40px 0;
+  background-color:#ffffff;
+  background-color: rgb(200,200,200);
+  color:#4b4c4d;
+}
+
+.account-footer-basic {
+  padding:40px 0;
+  background-color:#ffffff;
+  background-color: rgb(200,200,200);
+  color:#4b4c4d;
+  position: fixed;
+  bottom: 0px;
+}
+.account-footer-basic ul {
+  padding:0; list-style:none; text-align:center; font-size:18px; line-height:1.6; margin-bottom:0;
+}
+
+.footer-basic ul {
+  padding:0; list-style:none; text-align:center; font-size:18px; line-height:1.6; margin-bottom:0;
+}
+.account-footer-basic li {
+  padding:0 10px;
+}
+
+.footer-basic li {
+  padding:0 10px;
+}
+
+.footer-basic ul a {
+  color:inherit; text-decoration:none; opacity:0.8;
+}
+.account-footer-basic ul a {
+  color:inherit; text-decoration:none; opacity:0.8;
+}
+.account-footer-basic ul a:hover {
+  opacity:1;
+}
+
+.footer-basic ul a:hover {
+  opacity:1;
+}
+
+.footer-basic .social {
+  text-align:center; padding-bottom:25px;
+}
+.account-footer-basic .social {
+  text-align:center; padding-bottom:25px;
+}
+
+.footer-basic .social > a {
+  font-size:24px; width:40px; height:40px; line-height:40px; display:inline-block;
+  text-align:center; border-radius:50%; border:1px solid #ccc; margin:0 8px; color:inherit; opacity:0.75;
+}
+.account-footer-basic .social > a {
+  font-size:24px; width:40px; height:40px; line-height:40px; display:inline-block;
+  text-align:center; border-radius:50%; border:1px solid #ccc; margin:0 8px; color:inherit; opacity:0.75;
+}
+
+.footer-basic .social > a:hover {
+  opacity:0.9;
+}
+.account-footer-basic .social > a:hover {
+  opacity:0.9;
+}
+
+.footer-basic .copyright {
+  margin-top:15px; text-align:center; font-size:13px; color:#aaa; margin-bottom:0;
+}
+.account-footer-basic .copyright {
+  margin-top:15px; text-align:center; font-size:13px; color:#aaa; margin-bottom:0;
+}
+
+nav{background-color: white;}
+.widgets{background-color: transparent; border: none; box-shadow: none;margin: 0 10px;}
+.purpletext{color: rgb(131,58,180);}
+.logo{font-size: xx-large;font-family: 'Sora';font-weight: bolder;}
+p{font-family: 'Poppins';}
+.bottombarrel, small{color:gray; font-size: small;}
+h6{font-weight: bold;font-size: small;}
+body{background-color:rgb(250, 250, 250) ;}
+@media (max-width:768px){.nodisplay{display: none;}}
+@media(max-width:992px){.nodisplay1{display: none;}}
+@media (max-width:768px){#block{display:block;padding: 6px;}}
+@media(min-width:768px){.navbar-bottom{display:none;}}
+
+  /* The popup form - hidden by default */
+  .form-popup {
+    position: fixed;
+    bottom: 0px;
+    right:0px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    width:500px;
+    transition: 0.5s;
+    -webkit-box-shadow: inset 0px 0px 400px rgb(58, 57, 57);
+    box-shadow: inset 0px 0px 400px rgb(58, 57, 57);
+  }
+  
+  /* Add styles to the form container */
+  .form-container {
+    padding: 10px;
+    background-color: white;
+  }
+  
+  /* Full-width input fields */
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+  
+  /* When the inputs get focus, do something */
+  .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/login button */
+  .form-container .btn {
+    background-color: rgb(71,35,217);
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  
+  /* Add a red background color to the cancel button */
+  .form-container .cancel {
+    background-color: grey;
+  }
+  
+  /* Add some hover effects to buttons */
+  .form-container .btn:hover, .open-button:hover {
+    opacity: 1;
+  }
+  #cover{
+    position: fixed;
+    top:0;
+    left:0;
+    background:rgba(0, 0, 0, 0.6);
+    z-index:5;
+    width:100%;
+    height:100%;
+    display: none;
+  }
+.addpost{height: 40px;width:40px; position:fixed; bottom:10%; right:5%; z-index:2; display: none;}
+@media (max-width:992px){.addpost{display: block;}.nobg{display: none;}}
+.homenav{background-color: rgb(250, 250, 250);box-shadow:0px 2px 2px -2px rgb(58, 57, 57);}
+.connect {
+  font-size:56px;
+  background: -webkit-linear-gradient(rgba(131,58,180), rgba(218,96,96));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.btns{background-color: black;}
+@media(max-width:992px){#border{border-right: none;}}
+.navbar-bottom{position:fixed; bottom:0px;right:0px;left:0px;background-color: white;}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+<div class="container mb-3">
+    <div class="row mt-5">
+        <div class="col-md-3 col-sm-6">
+            <a href="{% url 'posts:post-list' %}" class="btn btn-light"><i class="bx bx-left-arrow"></i> Back to Feed</a>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-5">
+        <div class="card col-md-8 col-sm-12 shadow-sm px-5 pt-3">
+                <img src="{{ profile.picture.url }}" class="rounded-circle" width="70" height="70" />
+                {% if profile.name %}
+                <h6 class="py-4">{{ profile.name }} <span style="color: grey;">@{{profile.user.username}}</span>
+                {% endif %}
+                <p style="float:right">
+                    <a href="followers"><button class="btn btn-round btn-outline-dark ms-2">Followers: {{ number_of_followers }}</button></a>
+                    {% if not request.user == profile.user %}
+                    {% if is_following %}
+                    <form method="POST" action="/{{profile.user.username}}/unfollow" style="display: inline;float: right;">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-danger ms-2" type=submit>Unfollow</button>
+                    </form>
+                    {% else %}
+                    <form method="POST" action="/{{profile.user.username}}/follow" style="display: inline;float: right;">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-success ms-2" type=submit>Follow</button>
+                    </form>
+                    {% endif %}
+                    {% endif %}
+                    {% if request.user == profile.user %}
+                    <a href="#edit"><button class="btn btn-outline-primary ms-2" style="float: right;">Edit Profile</button></i></a>
+                    {% endif %}
+                </p>
+                </h5>
+            <div>
+                {% if profile.location %}
+                <span class="bottombarrel"><i class="bx bx-location-plus"></i>{{ profile.location }}</span>
+                {% endif %}
+                {% if profile.birth_date %}
+                <p>{{ profile.birth_date }}</p>
+                {% endif %}
+                {% if profile.bio %}
+                <p>{{ profile.bio }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-md-5">{% for post in posts %}
+        <div class="justify-content-center mt13">
+            <div class="card">
+                    <div class="container p-1">
+                        <div class="row">
+                            <div class="col-2"><img src="{{post.author.profile.picture.url}}" class="rounded-circle p-2" width="60px" height="60px"></div>
+                            <div class="col-10"><h6>{{post.author.profile.name}} <small>@{{post.author.username}}</small></h6>
+                            <p>{{post.body}}</p>
+                            <p>
+                                <form method="POST" action="{% url 'posts:like' post.pk %}" style="display:inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <button class="widgets" type="submit"><i class="bx bx-heart bottombarrel"></i> <span class="bottombarrel">{{ post.likes.all.count }}</span></button>
+                                </form>
+        
+                                    <a href="/posts/{{post.pk}}/"><button class="widgets"><i class="bx bx-comment bottombarrel"></i></button></a>
+                                    <button class="widgets"><i class="bx bx-share-alt bottombarrel"></i></button>
+                            </p>
+                            <p style="position:absolute; right: 4px; bottom: 1px;" class="bottombarrel">{{post.created_on}}</p>    
+                        </div>
+        
+                        </div>
+                        </div>
+                    </div>
+                    <div class="container pb-2">
+            </div>
+            
+        </div>
+        {% endfor %}
+        </div>
+    <div class="col-4"></div>
+</div>
+</div>
+{% if request.user == profile.user %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 col-sm-12" id="edit">
+        <h5>Update Your Profile</h5>
+    </div>
+</div>
+<div class="row justify-content-center mt-3 mb-5">
+    <div class="col-md-5 col-sm-12">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ p_form | crispy }}
+            <div class="d-grid gap-2">
+                <button class="btn btn-success mt-3">Update!</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% include 'footer.html' %}
+{% endblock content %}

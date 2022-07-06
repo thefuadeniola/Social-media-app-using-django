@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+                <a href="{% url 'posts:post-list' %}" class="btn btn-light"><i class="bx bx-left-arrow-alt"></i>Back to Feed</a>
+        </div>
+        <div class="col-md-5">   
+            <div class="justify-content-center mt13 mb-3">
+                <div class="card">
+                    <div class="container p-1">
+                        <div class="row">
+                            <div class="col-2"><img src="{{post.author.profile.picture.url}}" class="rounded-circle p-2" width="60px" height="60px"></div>
+                            <div class="col-6"><h6>{{post.author.profile.name}} <small>@{{post.author.username}}</small></h6>
+                                <p>{{post.body}}</p>
+                                {% if post.image %}
+                                <div class="justify-content-center mb-2">
+                                    <img src="{{post.image.url}}" style="height:300px;width: 300px;object-fit:cover;border-radius: 4px;">
+                                </div>
+                                {% endif %}
+                                <form method="POST" action="{% url 'posts:like' post.pk %}" style="display:inline">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="next" value="{{ request.path }}">
+                                    <button class="widgets" type="submit"><i class="bx bx-heart bottombarrel"></i> <span class="bottombarrel">{{ post.likes.all.count }}</span></button>
+                                </form>
+                                <a href="/posts/{{post.pk}}/"><button class="widgets"><i class="bx bx-comment bottombarrel"></i></button></a>
+                                <button class="widgets"><i class="bx bx-share-alt bottombarrel"></i></button>
+                                {% if request.user == post.author %}
+                                    <a href="delete" onclick="return confirm('Delete this post?');"><button class="widgets"><i class="fas fa-trash bottombarrel"></i></button></a>
+                                {% endif %}
+                                <p style="position:absolute; right: 4px; bottom: 1px;" class="bottombarrel ">{{post.created_on}}</p>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="justify-content-center mt-3">
+                <div class="col-md-5 col-sm-12">
+                    <h5>Add a Comment!</h5>
+                </div>
+            </div>
+            <div class="justify-content-center mt-3 mb-5">
+                <div>
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | crispy }}
+                        <div class="d-grid gap-2">
+                            <button class="btn btnpost text-light mt-3 zoom">Send</button>
+                        </div>
+                    </form>
+                </div>
+            </div>            
+        </div>
+        <div class="col-5 nodisplay">
+            <div class="mb-2">            
+                <h3>Comments</h3>
+            </div>
+            <div class="card">
+                {% for instance in comment_list %}
+                <div class="container">
+                    <div class="row">
+                        <div class="col-2"><img src="{{instance.author.profile.picture.url}}" class="rounded-circle p-2" width="60px" height="60px"></div>
+                        <div class="col-10 pt-1">
+                            <h6>{{instance.author.profile.name}} <small>@{{instance.author.username}}</small></h6>
+                            <p>{{instance.comment}}</p>
+                            <button class="widgets"><i class="bx bx-heart bottombarrel"></i> <span class="bottombarrel">{{ post.likes.all.count }}</span></button>
+                            <a href="#"><button class="widgets"><i class="bx bx-comment bottombarrel"></i></button></a>
+                            <button class="widgets"><i class="bx bx-share-alt bottombarrel"></i></button>
+                            <span class="bottombarrel">{{instance.created_on}}</span>    
+                             <hr>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+    </div>
+</div>
+{% endblock content %}
